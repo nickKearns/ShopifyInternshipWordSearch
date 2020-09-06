@@ -57,7 +57,7 @@ class GameVC: UIViewController {
         s.translatesAutoresizingMaskIntoConstraints = false
         s.alignment = .center
         s.axis = .vertical
-        s.distribution = .equalSpacing
+        s.distribution = .fill
         return s
     }()
     
@@ -65,8 +65,9 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        setupCollectionView()
         setupStackViews()
+        setupCollectionView()
+
         
     }
     
@@ -74,25 +75,31 @@ class GameVC: UIViewController {
         //add the stackview to the main view
         self.view.addSubview(stackView)
         //create 3 horizontal stack views with 2 labels in each
-        let horizontalStack1 = UIStackView(arrangedSubviews: [swiftLabel, kotlinLabel])
-        horizontalStack1.axis = .horizontal
+        let horizontalStack1 = UIStackView()
         horizontalStack1.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack1.addArrangedSubview(swiftLabel)
+        horizontalStack1.addArrangedSubview(kotlinLabel)
+        horizontalStack1.axis = .horizontal
         horizontalStack1.alignment = .center
         horizontalStack1.distribution = .fill
         horizontalStack1.spacing = 40.0
         
         
-        let horizontalStack2 = UIStackView(arrangedSubviews: [objcLabel, variableLabel])
-        horizontalStack2.axis = .horizontal
+        let horizontalStack2 = UIStackView()
         horizontalStack2.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack2.addArrangedSubview(objcLabel)
+        horizontalStack2.addArrangedSubview(variableLabel)
+        horizontalStack2.axis = .horizontal
         horizontalStack2.alignment = .center
         horizontalStack2.distribution = .fill
         horizontalStack2.spacing = 40.0
         
         
-        let horizontalStack3 = UIStackView(arrangedSubviews: [javaLabel, mobileLabel])
-        horizontalStack3.axis = .horizontal
+        let horizontalStack3 = UIStackView()
         horizontalStack3.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack3.addArrangedSubview(javaLabel)
+        horizontalStack3.addArrangedSubview(mobileLabel)
+        horizontalStack3.axis = .horizontal
         horizontalStack3.alignment = .center
         horizontalStack3.distribution = .fill
         horizontalStack3.spacing = 40.0
@@ -112,6 +119,7 @@ class GameVC: UIViewController {
     
     
     func setupCollectionView() {
+        gridCollectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(gridCollectionView)
         gridCollectionView.backgroundColor = .systemGray6
         gridCollectionView.delegate = self
@@ -120,8 +128,8 @@ class GameVC: UIViewController {
         
         //Constrain the collection view to fill the rest of the screen
         NSLayoutConstraint.activate([
-            gridCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            gridCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 100),
+            gridCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            gridCollectionView.bottomAnchor.constraint(equalTo: stackView.topAnchor),
             gridCollectionView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor)
             
         ])
@@ -132,12 +140,18 @@ class GameVC: UIViewController {
 }
 
 extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 100
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "letterCell", for: indexPath) as! LetterCell
         let randomIndex = Int.random(in: 0...25)
         let randomLetter = allLetters[randomIndex]
         cell.letterLabel.text = String(randomLetter)
@@ -151,14 +165,11 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension GameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 4  , height: 4)
+        return CGSize(width: self.view.frame.width/14, height: gridCollectionView.frame.height/14)
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return  UIEdgeInsets(top: 1 , left: 1 , bottom: 1, right: 1)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return  UIEdgeInsets(top: 1 , left: 1 , bottom: 1, right: 1)
+//    }
     
     
     
