@@ -16,6 +16,7 @@
 		01FCE9F025047E4C000BAF8F /* WordBankLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9EF25047E4C000BAF8F /* WordBankLabel.swift */; };
 		01FCE9F425048CDC000BAF8F /* LetterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9F225048CDC000BAF8F /* LetterCell.swift */; };
 		01FCE9F525048CDC000BAF8F /* LetterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FCE9F325048CDC000BAF8F /* LetterCell.xib */; };
+		01FCE9F9250573DE000BAF8F /* GridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9F8250573DE000BAF8F /* GridGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		01FCE9EF25047E4C000BAF8F /* WordBankLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBankLabel.swift; sourceTree = "<group>"; };
 		01FCE9F225048CDC000BAF8F /* LetterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCell.swift; sourceTree = "<group>"; };
 		01FCE9F325048CDC000BAF8F /* LetterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LetterCell.xib; sourceTree = "<group>"; };
+		01FCE9F8250573DE000BAF8F /* GridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		01FCE9D625031239000BAF8F /* ShopifyInternshipWordSearch */ = {
 			isa = PBXGroup;
 			children = (
+				01FCE9F7250573D0000BAF8F /* Models */,
 				01FCE9F125047E53000BAF8F /* views */,
 				01FCE9EB25031347000BAF8F /* View Controllers */,
 				01FCE9D725031239000BAF8F /* AppDelegate.swift */,
@@ -90,6 +93,14 @@
 				01FCE9F325048CDC000BAF8F /* LetterCell.xib */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		01FCE9F7250573D0000BAF8F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				01FCE9F8250573DE000BAF8F /* GridGenerator.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FCE9F9250573DE000BAF8F /* GridGenerator.swift in Sources */,
 				01FCE9EC25032EA9000BAF8F /* HomeVC.swift in Sources */,
 				01FCE9F425048CDC000BAF8F /* LetterCell.swift in Sources */,
 				01FCE9D825031239000BAF8F /* AppDelegate.swift in Sources */,

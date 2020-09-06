@@ -16,7 +16,14 @@ class GameVC: UIViewController {
     
     let wordsToFind = ["swift", "kotlin", "objectivec", "variable", "java", "mobile"]
     
-    let allLetters = Array("abcdefghijklmnopqrstuvwxyz")
+//    let allLetters = Array("abcdefghijklmnopqrstuvwxyz")
+    //^ might not need this once there is an instance of GridGenerator
+    
+    var selectedStrings: [String] = []
+    
+    
+    var gridGenerator = GridGenerator()
+    
     
     //create a label for each of the 6 words to be found
     let swiftLabel: UILabel = {
@@ -57,7 +64,7 @@ class GameVC: UIViewController {
         s.translatesAutoresizingMaskIntoConstraints = false
         s.alignment = .center
         s.axis = .vertical
-        s.distribution = .fill
+        s.distribution = .fillEqually
         return s
     }()
     
@@ -65,8 +72,11 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
+        gridGenerator.fillGrid()
         setupStackViews()
         setupCollectionView()
+
+        
 
         
     }
@@ -121,7 +131,10 @@ class GameVC: UIViewController {
     func setupCollectionView() {
         gridCollectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(gridCollectionView)
+        gridCollectionView.allowsMultipleSelection = true
         gridCollectionView.backgroundColor = .systemGray6
+//        let gestureRecognizer = UIGestureRecognizer(target: self, action: #selector(handleGesture))
+//        gridCollectionView.addGestureRecognizer(gestureRecognizer)
         gridCollectionView.delegate = self
         gridCollectionView.dataSource = self
         gridCollectionView.register(UINib(nibName: "LetterCell", bundle: .main), forCellWithReuseIdentifier: LetterCell.identifier)
@@ -136,10 +149,25 @@ class GameVC: UIViewController {
         
     }
     
+//    @objc
+//    func handleGesture() {
+//
+//
+//    }
+    
+    
+    
     
 }
 
 extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -152,9 +180,11 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "letterCell", for: indexPath) as! LetterCell
-        let randomIndex = Int.random(in: 0...25)
-        let randomLetter = allLetters[randomIndex]
-        cell.letterLabel.text = String(randomLetter)
+//        let randomIndex = Int.random(in: 0...25)
+//        let randomLetter = allLetters[randomIndex]
+//        cell.letterLabel.text = String(randomLetter)
+        print(gridGenerator.gridSingleArray)
+        cell.letterLabel.text = gridGenerator.gridSingleArray[indexPath.row]
         return cell
     }
     
@@ -167,11 +197,6 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width/14, height: gridCollectionView.frame.height/14)
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return  UIEdgeInsets(top: 1 , left: 1 , bottom: 1, right: 1)
-//    }
-    
-    
     
     
 }
