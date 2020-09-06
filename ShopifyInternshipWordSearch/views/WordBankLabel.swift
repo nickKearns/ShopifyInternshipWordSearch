@@ -11,5 +11,25 @@ import UIKit
 
 class WordBankLabel: UILabel {
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+    func setText(word: String) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.textAlignment = .center
+        self.text = word
+        self.textColor = .systemRed
+    }
+    
+    func wasFound() {
+        self.textColor = .systemBlue
+    }
     
 }
