@@ -14,7 +14,6 @@ class GameVC: UIViewController {
     //initialize a collection view
     let gridCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
-    let wordsToFind = ["swift", "kotlin", "objectivec", "variable", "java", "mobile"]
     
 //    let allLetters = Array("abcdefghijklmnopqrstuvwxyz")
     //^ might not need this once there is an instance of GridGenerator
