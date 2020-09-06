@@ -35,14 +35,14 @@ struct GridGenerator {
 //            print("appending \(tempArray)")
             
         }
-//        print(gridDoubleArray)
+        print(gridDoubleArray)
         self.turnDoubleArrayToSingle()
     }
     
     
     mutating func turnDoubleArrayToSingle() {
-        for i in 0..<self.gridDoubleArray.count {
-            for j in 0..<self.gridDoubleArray[0].count {
+        for i in 1..<self.gridDoubleArray.count - 1 {
+            for j in 0..<self.gridDoubleArray[1].count - 1{
                 self.gridSingleArray.append(gridDoubleArray[i][j])
             }
         }
