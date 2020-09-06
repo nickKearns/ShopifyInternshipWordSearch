@@ -16,7 +16,7 @@ class GameVC: UIViewController {
     
     let wordsToFind = ["swift", "kotlin", "objectivec", "variable", "java", "mobile"]
     
-    let allLetters = "abcdefghijklmnopqrstuvwxyz"
+    let allLetters = Array("abcdefghijklmnopqrstuvwxyz")
     
     //create a label for each of the 6 words to be found
     let swiftLabel: UILabel = {
@@ -41,7 +41,7 @@ class GameVC: UIViewController {
     }()
     let javaLabel: UILabel = {
         let l = WordBankLabel()
-        l.setText(word: "javaLabel")
+        l.setText(word: "java")
         return l
     }()
     let mobileLabel: UILabel = {
@@ -53,10 +53,11 @@ class GameVC: UIViewController {
     
     
     var stackView: UIStackView = {
-       let s  = UIStackView()
+        let s  = UIStackView()
         s.translatesAutoresizingMaskIntoConstraints = false
         s.alignment = .center
         s.axis = .vertical
+        s.distribution = .equalSpacing
         return s
     }()
     
@@ -64,8 +65,9 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        setupStackViews()
         setupCollectionView()
+        setupStackViews()
+        
     }
     
     func setupStackViews() {
@@ -74,10 +76,26 @@ class GameVC: UIViewController {
         //create 3 horizontal stack views with 2 labels in each
         let horizontalStack1 = UIStackView(arrangedSubviews: [swiftLabel, kotlinLabel])
         horizontalStack1.axis = .horizontal
+        horizontalStack1.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack1.alignment = .center
+        horizontalStack1.distribution = .fill
+        horizontalStack1.spacing = 40.0
+        
+        
         let horizontalStack2 = UIStackView(arrangedSubviews: [objcLabel, variableLabel])
         horizontalStack2.axis = .horizontal
+        horizontalStack2.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack2.alignment = .center
+        horizontalStack2.distribution = .fill
+        horizontalStack2.spacing = 40.0
+        
+        
         let horizontalStack3 = UIStackView(arrangedSubviews: [javaLabel, mobileLabel])
         horizontalStack3.axis = .horizontal
+        horizontalStack3.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack3.alignment = .center
+        horizontalStack3.distribution = .fill
+        horizontalStack3.spacing = 40.0
         //Add the 3 horizontal stack views to the outer vertical stack view
         stackView.addArrangedSubview(horizontalStack1)
         stackView.addArrangedSubview(horizontalStack2)
@@ -85,8 +103,10 @@ class GameVC: UIViewController {
         
         //constrain the vertical stack to the bottom section of the view
         NSLayoutConstraint.activate([
-            stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
-            stackView.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.80),
+            stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            stackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.20),
+            stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.90)
         ])
     }
     
@@ -96,14 +116,14 @@ class GameVC: UIViewController {
         gridCollectionView.backgroundColor = .systemGray6
         gridCollectionView.delegate = self
         gridCollectionView.dataSource = self
-        gridCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        gridCollectionView.register(UINib(nibName: "LetterCell", bundle: .main), forCellWithReuseIdentifier: LetterCell.identifier)
         
         //Constrain the collection view to fill the rest of the screen
         NSLayoutConstraint.activate([
             gridCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            gridCollectionView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -8),
+            gridCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 100),
             gridCollectionView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor)
-        
+            
         ])
         
     }
@@ -117,8 +137,11 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        allLetters.
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LetterCell
+        let randomIndex = Int.random(in: 0...25)
+        let randomLetter = allLetters[randomIndex]
+        cell.letterLabel.text = String(randomLetter)
+        return cell
     }
     
     
@@ -127,18 +150,18 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
 
 extension GameVC: UICollectionViewDelegateFlowLayout {
-     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: 60  , height: 60)
-       }
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return  UIEdgeInsets(top: 20 , left: 20  ,  bottom: 20, right: 20)
-       }
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return 20.0
-       }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 4  , height: 4)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return  UIEdgeInsets(top: 1 , left: 1 , bottom: 1, right: 1)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
     
     
-        	
+    
     
 }
 

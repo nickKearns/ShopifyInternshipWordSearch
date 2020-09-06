@@ -26,6 +26,8 @@ class WordBankLabel: UILabel {
         self.textAlignment = .center
         self.text = word
         self.textColor = .systemRed
+        self.font = UIFont(name: "Avenir Bold", size: 15)
+        
     }
     
     func wasFound() {
