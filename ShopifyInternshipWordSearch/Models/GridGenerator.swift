@@ -21,8 +21,13 @@ struct GridGenerator {
     
     let keywords: [String] = ["swift", "kotlin", "objectivec", "variable", "java", "mobile"]
     
+    //dict to track what words populate what sections of the grid
+    //the string is the tell whether the word is spelled horizontally or vertically
+    //the first int is the starting index and the second is the end of the word
+    //
+    var blockedIndices: [String: (String, Int, Int)]
     
-    //this function works but it starts the outter array with an empty array
+    //this function works but it starts the outer array with an empty array
     //resulting in wonky indexing in the function that turns it into a single array
     mutating func fillGrid() {
         for _ in 0...10 {
@@ -32,15 +37,26 @@ struct GridGenerator {
                 let randomIndex = Int.random(in: 0...25)
                 let randomLetter = allLetters[randomIndex]
                 tempArray.append(String(randomLetter))
-//                print("appending \(String(randomLetter))")
             }
             self.gridDoubleArray.append(tempArray)
-//            print("appending \(tempArray)")
             
         }
-        print(gridDoubleArray)
         addInKeyWords()
     }
+    
+//    this function will iterate over the blockedIndices dict
+    //
+    func checkForCollision(word: String, x: Int, y: Int) -> Bool {
+        for (key, value) in blockedIndices {
+            
+
+
+        }
+        
+        return false
+
+    }
+    
     
     
     mutating func addInKeyWords() {
@@ -60,6 +76,12 @@ struct GridGenerator {
                 //has enough horizontal space to fit
                 let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - (word.count))
                 let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 )
+                if checkForCollision(word: word, x: randomOuterIndex, y: randomInnerIndex) {
+                    
+                }
+                
+               
+                
                 for i in 0..<word.count {
                     gridDoubleArray[randomOuterIndex + i][randomInnerIndex] = String(wordArray[i])
                 }
@@ -78,11 +100,7 @@ struct GridGenerator {
                 
             
         }
-        print(gridDoubleArray)
         self.turnDoubleArrayToSingle()
-
-        
-        
         
     }
     
@@ -93,11 +111,5 @@ struct GridGenerator {
                 self.gridSingleArray.append(gridDoubleArray[i][j])
             }
         }
-        print(self.gridSingleArray)
-        
-        
     }
-    
-    
-    
 }

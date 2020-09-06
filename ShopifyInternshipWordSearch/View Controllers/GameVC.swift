@@ -179,10 +179,6 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "letterCell", for: indexPath) as! LetterCell
-//        let randomIndex = Int.random(in: 0...25)
-//        let randomLetter = allLetters[randomIndex]
-//        cell.letterLabel.text = String(randomLetter)
-        print(gridGenerator.gridSingleArray)
         cell.letterLabel.text = gridGenerator.gridSingleArray[indexPath.row]
         return cell
     }
