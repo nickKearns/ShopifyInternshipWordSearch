@@ -91,10 +91,18 @@ class HomeVC: UIViewController {
             playButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             playButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             playButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.50)
-            
-        
-        
         ])
+        
+        //call the playButtonPressed when the button is tapped
+        playButton.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
+        
+    }
+    
+    
+    
+    @objc func playButtonPressed() {
+        let gameVC = GameVC()
+        navigationController?.pushViewController(gameVC, animated: true)
         
     }
     

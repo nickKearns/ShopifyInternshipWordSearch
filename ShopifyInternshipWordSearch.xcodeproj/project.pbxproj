@@ -12,6 +12,8 @@
 		01FCE9E12503123D000BAF8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01FCE9E02503123D000BAF8F /* Assets.xcassets */; };
 		01FCE9E42503123D000BAF8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FCE9E22503123D000BAF8F /* LaunchScreen.storyboard */; };
 		01FCE9EC25032EA9000BAF8F /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9DB25031239000BAF8F /* HomeVC.swift */; };
+		01FCE9EE250334EC000BAF8F /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9ED250334EC000BAF8F /* GameVC.swift */; };
+		01FCE9F025047E4C000BAF8F /* WordBankLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9EF25047E4C000BAF8F /* WordBankLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		01FCE9E02503123D000BAF8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01FCE9E32503123D000BAF8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01FCE9E52503123D000BAF8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01FCE9ED250334EC000BAF8F /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		01FCE9EF25047E4C000BAF8F /* WordBankLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBankLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		01FCE9D625031239000BAF8F /* ShopifyInternshipWordSearch */ = {
 			isa = PBXGroup;
 			children = (
+				01FCE9F125047E53000BAF8F /* views */,
 				01FCE9EB25031347000BAF8F /* View Controllers */,
 				01FCE9D725031239000BAF8F /* AppDelegate.swift */,
 				01FCE9D925031239000BAF8F /* SceneDelegate.swift */,
@@ -68,8 +73,17 @@
 			isa = PBXGroup;
 			children = (
 				01FCE9DB25031239000BAF8F /* HomeVC.swift */,
+				01FCE9ED250334EC000BAF8F /* GameVC.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		01FCE9F125047E53000BAF8F /* views */ = {
+			isa = PBXGroup;
+			children = (
+				01FCE9EF25047E4C000BAF8F /* WordBankLabel.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,7 +158,9 @@
 			files = (
 				01FCE9EC25032EA9000BAF8F /* HomeVC.swift in Sources */,
 				01FCE9D825031239000BAF8F /* AppDelegate.swift in Sources */,
+				01FCE9EE250334EC000BAF8F /* GameVC.swift in Sources */,
 				01FCE9DA25031239000BAF8F /* SceneDelegate.swift in Sources */,
+				01FCE9F025047E4C000BAF8F /* WordBankLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
