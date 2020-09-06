@@ -39,7 +39,7 @@ struct GridGenerator {
             
         }
         print(gridDoubleArray)
-        self.turnDoubleArrayToSingle()
+        addInKeyWords()
     }
     
     
@@ -58,24 +58,29 @@ struct GridGenerator {
                 //generate 2 random numbers to be the indices the word starts at
                 //cap the upper bound of the inner index by the length of the word to ensure the word
                 //has enough horizontal space to fit
-                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - 1)
-                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 - (word.count))
-                for i in 0...word.count {
+                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - (word.count))
+                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 )
+                for i in 0..<word.count {
                     gridDoubleArray[randomOuterIndex + i][randomInnerIndex] = String(wordArray[i])
                 }
             case 1:
                 //again generate 2 random numbers to be the indices
                 //cap the upper bound of the outer index by the length of the word
                 //to ensure the word has enough vertical space to fit
-                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - 1 - (word.count))
-                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1)
-                
+                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count)
+                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 - (word.count))
+                for i in 0..<word.count {
+                    gridDoubleArray[randomOuterIndex][randomInnerIndex + i] = String(wordArray[i])
+                }
             default:
                 return
             }
                 
             
         }
+        print(gridDoubleArray)
+        self.turnDoubleArrayToSingle()
+
         
         
         
