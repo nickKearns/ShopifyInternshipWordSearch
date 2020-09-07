@@ -148,11 +148,6 @@ class GameVC: UIViewController {
         
     }
     
-//    @objc
-//    func handleGesture() {
-//
-//
-//    }
     
     
     
@@ -190,8 +185,10 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension GameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width/14, height: gridCollectionView.frame.height/14)
+        return CGSize(width: gridCollectionView.frame.width / 14, height: gridCollectionView.frame.height / 14)
     }
+    
+    
     
     
 }

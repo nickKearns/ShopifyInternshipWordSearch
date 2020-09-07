@@ -154,15 +154,16 @@ struct GridGenerator {
     
     
     mutating func fillWithDashes() {
-        for _ in 0...9 {
+        for _ in 1...10 {
             var tempArray: [String] = []
-            for _ in 0...9 {
+            for _ in 1...10 {
                 tempArray.append("-")
             }
             gridDoubleArray.append(tempArray)
         }
         print(gridDoubleArray)
         addKeywords()
+//        turnDoubleArrayToSingle()
     }
     
     
@@ -171,7 +172,7 @@ struct GridGenerator {
     
     mutating func turnDoubleArrayToSingle() {
         for i in 0..<self.gridDoubleArray.count {
-            for j in 0..<self.gridDoubleArray[0].count - 1{
+            for j in 0..<self.gridDoubleArray[0].count{
                 self.gridSingleArray.append(gridDoubleArray[i][j])
             }
         }
