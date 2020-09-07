@@ -26,50 +26,74 @@ struct GridGenerator {
     
     func checkForFit(word: String, orientation: Int) -> (Int, Int) {
         
-        
+        //switch statement based on whether the keyword is going vertical or horizontal
+        //case 0 is the keyword is going horizontal
+        //case 1 is the keyword is going vertical
         switch orientation {
         case 0:
+            //generate two random indices to start the keyword at
             let randomX = Int.random(in: 0..<self.gridDoubleArray.count - (word.count - 1))
             var xTracker = randomX
+            //create a new var to track change in x so randomX does not have to change
+            //ensuring that the correct x position is returned
             let randomY = Int.random(in: 0..<self.gridDoubleArray[0].count )
             for char in word {
+                //check if the current spot is a dash
                 if gridDoubleArray[xTracker][randomY] == "-" {
+                    
                     xTracker += 1
                 }
+                    //if the current spot isnt a dash but happens to match the current char
+                    //in the current word then that is allowed and increment xtracker
                 else if String(char) == String(gridDoubleArray[xTracker][randomY]) {
                     xTracker += 1
                 
                 }
+                //if the previous two if statements do not run then there would be a collision
+                //between the current word and the word we are attempting to add
+                //so make a recursive call the checkForFit function
                 else {
                     return checkForFit(word: word, orientation: 0)
                 }
             }
-           
+           //only when all the characters in the string would be able to fit in the grid does this function
+           //return the randomly generated x and y position in the grid
             return (randomX, randomY)
             
         case 1:
+            //generate two random indices to start the keyword at
             let randomX = Int.random(in: 0..<self.gridDoubleArray.count)
             let randomY = Int.random(in: 0..<self.gridDoubleArray[0].count - (word.count - 1) )
+            //create a new var to track change in y so randomY does not have to change
+            //ensuring that the correct y position is returned
             var yTracker = randomY
             for char in word {
+                //check if the current spot is a dash
                 if gridDoubleArray[randomX][yTracker] == "-" {
                     yTracker += 1
                 }
+                //if the current spot isnt a dash but happens to match the current char
+                //in the current word then that is allowed and increment ytracker
                 else if String(char) == String(gridDoubleArray[randomX][yTracker]) {
                     yTracker += 1
                 
                 }
+                //if the previous two if statements do not run then there would be a collision
+                //between the current word and the word we are attempting to add
+                //so make a recursive call the checkForFit function
                 else {
                     return checkForFit(word: word, orientation: 1)
                 }
                
             }
-            
+            //only when all the characters in the string would be able to fit in the grid does this function
+            //return the randomly generated x and y position in the grid
            return (randomX, randomY)
             
         default:
             print("somehow orientation was not 0 or 1")
-            //this will never happen
+            //this will never happen because the random number must be either 0 or 1
+            //and then recursive calls pass their own orientation number to the next call
             return(0,0)
         }
     }
@@ -118,6 +142,8 @@ struct GridGenerator {
     
     
     
+    
+    
     mutating func fillWithDashes() {
         for _ in 1...10 {
             var tempArray: [String] = []
@@ -152,6 +178,5 @@ struct GridGenerator {
                 self.gridSingleArray.append(gridDoubleArray[i][j])
             }
         }
-        print(gridSingleArray)
     }
 }

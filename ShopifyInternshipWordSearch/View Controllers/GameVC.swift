@@ -14,9 +14,9 @@ class GameVC: UIViewController {
     //initialize a collection view
     let gridCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
+
     
-//    let allLetters = Array("abcdefghijklmnopqrstuvwxyz")
-    //^ might not need this once there is an instance of GridGenerator
+    var currentSelectedLetters: [String] = []
     
     var selectedStrings: [String] = []
     
@@ -132,8 +132,6 @@ class GameVC: UIViewController {
         self.view.addSubview(gridCollectionView)
         gridCollectionView.allowsMultipleSelection = true
         gridCollectionView.backgroundColor = .systemGray6
-//        let gestureRecognizer = UIGestureRecognizer(target: self, action: #selector(handleGesture))
-//        gridCollectionView.addGestureRecognizer(gestureRecognizer)
         gridCollectionView.delegate = self
         gridCollectionView.dataSource = self
         gridCollectionView.register(UINib(nibName: "LetterCell", bundle: .main), forCellWithReuseIdentifier: LetterCell.identifier)
@@ -154,6 +152,8 @@ class GameVC: UIViewController {
     
 }
 
+
+//MARK: function for GameVC to conform to collection view protocols
 extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
@@ -175,6 +175,7 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "letterCell", for: indexPath) as! LetterCell
         cell.letterLabel.text = gridGenerator.gridSingleArray[indexPath.row]
+        cell.letterLabel.font = UIFont(name: "Avenir", size: 15)
         return cell
     }
     
