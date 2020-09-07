@@ -13,7 +13,7 @@ import Foundation
 
 struct GridGenerator {
     
-    var gridDoubleArray: [[String]] = [[]]
+    var gridDoubleArray = [[String]]()
     
     let allLetters = Array("abcdefghijklmnopqrstuvwxyz")
     
@@ -64,9 +64,9 @@ struct GridGenerator {
         
         switch orientation {
         case 0:
-            let randomX = Int.random(in: 1..<self.gridDoubleArray.count - (word.count))
+            let randomX = Int.random(in: 0..<self.gridDoubleArray.count - (word.count - 1))
             var xTracker = randomX
-            let randomY = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 )
+            let randomY = Int.random(in: 0..<self.gridDoubleArray[0].count )
             for char in word {
                 if gridDoubleArray[xTracker][randomY] == "-" {
                     xTracker += 1
@@ -83,8 +83,8 @@ struct GridGenerator {
             return (randomX, randomY)
             
         case 1:
-            let randomX = Int.random(in: 1..<self.gridDoubleArray.count)
-            let randomY = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 - word.count )
+            let randomX = Int.random(in: 0..<self.gridDoubleArray.count)
+            let randomY = Int.random(in: 0..<self.gridDoubleArray[0].count - (word.count - 1) )
             var yTracker = randomY
             for char in word {
                 if gridDoubleArray[randomX][yTracker] == "-" {
@@ -154,78 +154,27 @@ struct GridGenerator {
     
     
     mutating func fillWithDashes() {
-        for _ in 0...10 {
+        for _ in 0...9 {
             var tempArray: [String] = []
-            for _ in 0...10 {
+            for _ in 0...9 {
                 tempArray.append("-")
             }
             gridDoubleArray.append(tempArray)
         }
+        print(gridDoubleArray)
         addKeywords()
     }
     
     
     
-    mutating func addInKeyWords() {
-        for word in keywords {
-            //generate a random number between 0 and 1
-            //0 will be the case where the keyword is spelled out horizontally
-            //1 will be the case where the keyword is spelled out vertically
-            //No diagonal cases in this version
-            let direction = Int.random(in: 0...1)
-            let wordArray = Array(word)
-            
-            
-            switch direction {
-            case 0:
-                //generate 2 random numbers to be the indices the word starts at
-                //cap the upper bound of the inner index by the length of the word to ensure the word
-                //has enough horizontal space to fit
-                // maybe something like a while loop. while checkForCollision is true
-                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - (word.count))
-                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 )
-//                checkForCollision(word: word, orientation: 0, x: randomOuterIndex, y: randomInnerIndex)
-                
-//                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - (word.count))
-//                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 )
-//                if checkForCollision(word: word, x: randomOuterIndex, y: randomInnerIndex) {
-//                    for i in 0..<word.count {
-//                        gridDoubleArray[randomOuterIndex + i][randomInnerIndex] = String(wordArray[i])
-//                    }
-//                }
-//                else {
-//
-//                    checkForCollision(word: word, x: <#T##Int#>, y: <#T##Int#>)
-//                }
-                
-               
-                
-                
-            case 1:
-                //again generate 2 random numbers to be the indices
-                //cap the upper bound of the outer index by the length of the word
-                //to ensure the word has enough vertical space to fit
-                let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count)
-                let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 - (word.count))
-                for i in 0..<word.count {
-                    gridDoubleArray[randomOuterIndex][randomInnerIndex + i] = String(wordArray[i])
-                }
-            default:
-                return
-            }
-                
-            
-        }
-        self.turnDoubleArrayToSingle()
-        
-    }
     
     
     mutating func turnDoubleArrayToSingle() {
-        for i in 1..<self.gridDoubleArray.count - 1 {
-            for j in 0..<self.gridDoubleArray[1].count - 1{
+        for i in 0..<self.gridDoubleArray.count {
+            for j in 0..<self.gridDoubleArray[0].count - 1{
                 self.gridSingleArray.append(gridDoubleArray[i][j])
             }
         }
+        print(gridSingleArray)
     }
 }
