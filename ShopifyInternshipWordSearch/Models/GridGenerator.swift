@@ -21,42 +21,7 @@ struct GridGenerator {
     
     let keywords: [String] = ["swift", "kotlin", "objectivec", "variable", "java", "mobile"]
     
-    //this function works but it starts the outer array with an empty array
-    //resulting in wonky indexing in the function that turns it into a single array
-//    mutating func fillGrid() {
-//        for _ in 0...10 {
-//            var tempArray: [String] = []
-//            for _ in 0...10 {
-//
-//                let randomIndex = Int.random(in: 0...25)
-//                let randomLetter = allLetters[randomIndex]
-//                tempArray.append(String(randomLetter))
-//            }
-//            self.gridDoubleArray.append(tempArray)
-//
-//        }
-//        addInKeyWords()
-//    }
-//
-////    this function will iterate over the blockedIndices dict
-//    //
-//    func checkForCollision(word: String, orientation: Int, x: Int, y: Int) {
-//        var willColide = false
-////        let randomOuterIndex = Int.random(in: 1..<self.gridDoubleArray.count - (word.count))
-////        let randomInnerIndex = Int.random(in: 0..<self.gridDoubleArray[1].count - 1 )
-//        for (key, value) in blockedIndices {
-//            let (currentX, currentY) = value
-//            if
-//
-//
-//
-//
-//
-//            }
-//
-//
-//    }
-//
+
     
     
     func checkForFit(word: String, orientation: Int) -> (Int, Int) {
@@ -144,7 +109,7 @@ struct GridGenerator {
             
         }
         
-        turnDoubleArrayToSingle()
+        replaceDashes()
         
         
         
@@ -161,12 +126,23 @@ struct GridGenerator {
             }
             gridDoubleArray.append(tempArray)
         }
-        print(gridDoubleArray)
         addKeywords()
-//        turnDoubleArrayToSingle()
     }
     
-    
+    mutating func replaceDashes() {
+        for i in 0...9 {
+            for j in 0...9 {
+                if gridDoubleArray[i][j] == "-" {
+                    let randomIndex = Int.random(in: 1...25)
+                    let randomLetter = allLetters[randomIndex]
+                    gridDoubleArray[i][j] = String(randomLetter)
+                }
+            }
+        }
+        turnDoubleArrayToSingle()
+        
+        
+    }
     
     
     
