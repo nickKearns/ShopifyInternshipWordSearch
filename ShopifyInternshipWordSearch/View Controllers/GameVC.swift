@@ -71,7 +71,7 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        gridGenerator.fillGrid()
+        gridGenerator.fillWithDashes()
         setupStackViews()
         setupCollectionView()
 
