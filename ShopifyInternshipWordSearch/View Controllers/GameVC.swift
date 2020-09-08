@@ -79,7 +79,7 @@ class GameVC: UIViewController, UIGestureRecognizerDelegate {
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemBackground
         gridGenerator.fillWithDashes()
         setupStackViews()
         setupCollectionView()
@@ -139,7 +139,7 @@ class GameVC: UIViewController, UIGestureRecognizerDelegate {
     func setupCollectionView() {
         gridCollectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(gridCollectionView)
-        gridCollectionView.backgroundColor = .systemGray6
+        gridCollectionView.backgroundColor = .systemBackground
         gridCollectionView.delegate = self
         gridCollectionView.dataSource = self
         gridCollectionView.allowsMultipleSelection = true
@@ -182,6 +182,17 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let foundKeyword = wordSelector.checkForKeyword(selectedLetters: currentSelectedLetters)
         if foundKeyword != "" {
+            
+            
+//            guard let selectedCells = gridCollectionView.indexPathsForSelectedItems else {return}
+//            for cellIndexPath in selectedCells {
+//                
+//                gridCollectionView.deselectItem(at: cellIndexPath, animated: true)
+//                
+//            }
+            
+            currentSelectedLetters = []
+            
             switch foundKeyword {
                 //
             case "swift":
@@ -218,6 +229,7 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         
     }
+    
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

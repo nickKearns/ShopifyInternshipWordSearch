@@ -21,7 +21,7 @@ class WinVC: UIViewController {
         all the words!
         """
         l.numberOfLines = 0
-        l.backgroundColor = .systemGray6
+        l.textAlignment = .center
         l.font = UIFont(name: "Avenir", size: 30)
         
         return l
@@ -44,6 +44,7 @@ class WinVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         placeLabel()
         setupButton()
         
