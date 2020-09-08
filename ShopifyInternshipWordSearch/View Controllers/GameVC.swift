@@ -214,7 +214,7 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         if wordsFound == 6 {
             let winVC = WinVC()
-            navigationController?.pushViewController(WinVC, animated: true)
+            navigationController?.pushViewController(winVC, animated: true)
         }
         
     }
