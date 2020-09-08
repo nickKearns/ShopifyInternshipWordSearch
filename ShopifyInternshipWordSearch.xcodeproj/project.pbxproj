@@ -17,6 +17,7 @@
 		01FCE9F425048CDC000BAF8F /* LetterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9F225048CDC000BAF8F /* LetterCell.swift */; };
 		01FCE9F525048CDC000BAF8F /* LetterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FCE9F325048CDC000BAF8F /* LetterCell.xib */; };
 		01FCE9F9250573DE000BAF8F /* GridGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9F8250573DE000BAF8F /* GridGenerator.swift */; };
+		01FCE9FB25071013000BAF8F /* WordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCE9FA25071013000BAF8F /* WordSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		01FCE9F225048CDC000BAF8F /* LetterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterCell.swift; sourceTree = "<group>"; };
 		01FCE9F325048CDC000BAF8F /* LetterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LetterCell.xib; sourceTree = "<group>"; };
 		01FCE9F8250573DE000BAF8F /* GridGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGenerator.swift; sourceTree = "<group>"; };
+		01FCE9FA25071013000BAF8F /* WordSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				01FCE9F8250573DE000BAF8F /* GridGenerator.swift */,
+				01FCE9FA25071013000BAF8F /* WordSelector.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				01FCE9F9250573DE000BAF8F /* GridGenerator.swift in Sources */,
 				01FCE9EC25032EA9000BAF8F /* HomeVC.swift in Sources */,
+				01FCE9FB25071013000BAF8F /* WordSelector.swift in Sources */,
 				01FCE9F425048CDC000BAF8F /* LetterCell.swift in Sources */,
 				01FCE9D825031239000BAF8F /* AppDelegate.swift in Sources */,
 				01FCE9EE250334EC000BAF8F /* GameVC.swift in Sources */,

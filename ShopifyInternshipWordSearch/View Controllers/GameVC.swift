@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameVC: UIViewController {
+class GameVC: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: properties
     //initialize a collection view
@@ -22,6 +22,8 @@ class GameVC: UIViewController {
     
     
     var gridGenerator = GridGenerator()
+    
+    var wordSelector = WordSelector()
     
     
     //create a label for each of the 6 words to be found
@@ -130,10 +132,10 @@ class GameVC: UIViewController {
     func setupCollectionView() {
         gridCollectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(gridCollectionView)
-        gridCollectionView.allowsMultipleSelection = true
         gridCollectionView.backgroundColor = .systemGray6
         gridCollectionView.delegate = self
         gridCollectionView.dataSource = self
+        gridCollectionView.allowsMultipleSelection = true
         gridCollectionView.register(UINib(nibName: "LetterCell", bundle: .main), forCellWithReuseIdentifier: LetterCell.identifier)
         
         //Constrain the collection view to fill the rest of the screen
@@ -147,6 +149,7 @@ class GameVC: UIViewController {
     }
     
     
+   
     
     
     
@@ -157,9 +160,19 @@ class GameVC: UIViewController {
 extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
-    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.contentView.backgroundColor = .systemBackground
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? LetterCell {
+            cell.contentView.backgroundColor = .systemGray3
+            currentSelectedLetters.append(cell.letterLabel.text!)
+        }
+        
+        wordSelector.checkForKeyword(selectedLetters: currentSelectedLetters)
         
     }
     

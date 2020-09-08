@@ -30,6 +30,10 @@ class WordBankLabel: UILabel {
         
     }
     
+    func wordFound() {
+        self.textColor = .systemBlue
+    }
+    
     func wasFound() {
         self.textColor = .systemBlue
     }

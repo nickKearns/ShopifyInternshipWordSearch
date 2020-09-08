@@ -104,12 +104,12 @@ struct GridGenerator {
     mutating func addKeywords() {
         
         for word in keywords {
+            //0 means it goes horizontal
+            //1 means it goes vertical
             let orientation = Int.random(in: 0...1)
             
             var (x, y) = checkForFit(word: word, orientation: orientation)
             
-            print(x)
-            print(y)
             switch orientation {
             case 0:
                 for char in word {
@@ -133,7 +133,8 @@ struct GridGenerator {
             
         }
         
-        replaceDashes()
+//        replaceDashes()
+        turnDoubleArrayToSingle()
         
         
         
