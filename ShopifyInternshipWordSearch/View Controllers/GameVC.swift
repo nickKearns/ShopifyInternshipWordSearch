@@ -14,6 +14,8 @@ class GameVC: UIViewController, UIGestureRecognizerDelegate {
     //initialize a collection view
     let gridCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
+    
+    var wordsFound: Int = 0
 
     
     var currentSelectedLetters: [String] = []
@@ -24,6 +26,9 @@ class GameVC: UIViewController, UIGestureRecognizerDelegate {
     var gridGenerator = GridGenerator()
     
     var wordSelector = WordSelector()
+    
+    let keywords: [String] = ["swift", "kotlin", "objectivec", "variable", "java", "mobile"]
+
     
     
     //create a label for each of the 6 words to be found
@@ -164,6 +169,7 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.contentView.backgroundColor = .systemBackground
         }
+        currentSelectedLetters = []
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -172,7 +178,34 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
             currentSelectedLetters.append(cell.letterLabel.text!)
         }
         
-        wordSelector.checkForKeyword(selectedLetters: currentSelectedLetters)
+        let foundKeyword = wordSelector.checkForKeyword(selectedLetters: currentSelectedLetters)
+        if foundKeyword != "" {
+            switch foundKeyword {
+                //
+            case "swift":
+                swiftLabel.textColor = .systemBlue
+                wordsFound += 1
+            case "kotlin":
+                kotlinLabel.textColor = .systemBlue
+                wordsFound += 1
+            case "objectivec":
+                objcLabel.textColor = .systemBlue
+                wordsFound += 1
+            case "variable":
+                variableLabel.textColor = .systemBlue
+                wordsFound += 1
+            case "java":
+                javaLabel.textColor = .systemBlue
+                wordsFound += 1
+            case "mobile":
+                mobileLabel.textColor = .systemBlue
+                wordsFound += 1
+                
+            default:
+                print("")
+
+            }
+        }
         
     }
     

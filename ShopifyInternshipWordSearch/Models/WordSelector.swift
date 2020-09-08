@@ -18,15 +18,19 @@ struct WordSelector {
     func checkForKeyword(selectedLetters: [String]) -> String {
         
         for word in keywords {
-            var correctLetters = 0
             let keywordArr = Array(word)
-            for i in 0..<word.count {
-                if String(keywordArr[i]) == String(selectedLetters[i]) {
-                    correctLetters += 1
-                    if correctLetters == word.count {
-                        return word
-                    }
+            var correctLetters = 0
+            for i in 0..<selectedLetters.count {
+                if String(keywordArr[i]) != String(selectedLetters[i]) {
+                    break
                 }
+                else {
+                    correctLetters += 1
+                    
+                }
+            }
+            if correctLetters == word.count {
+                return word
             }
         }
         return ""
