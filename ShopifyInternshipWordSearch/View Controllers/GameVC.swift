@@ -31,7 +31,9 @@ class GameVC: UIViewController, UIGestureRecognizerDelegate {
 
     
     
+    
     //create a label for each of the 6 words to be found
+    //setText is a custom function created in the WordBankLabel subclass
     let swiftLabel: UILabel = {
         let l = WordBankLabel()
         l.setText(word: "swift")
@@ -205,6 +207,14 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
                 print("")
 
             }
+            
+            
+            
+        }
+        
+        if wordsFound == 6 {
+            let winVC = WinVC()
+            navigationController?.pushViewController(WinVC, animated: true)
         }
         
     }
@@ -229,7 +239,7 @@ extension GameVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
 }
 
-
+//MARK: collection view delegate flow layout conform
 extension GameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: gridCollectionView.frame.width / 14, height: gridCollectionView.frame.height / 14)
